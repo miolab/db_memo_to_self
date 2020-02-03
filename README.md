@@ -4,7 +4,7 @@
 
 ---
 
-## `PostgreSQL` のパスを通す（Windows 10）
+## `PostgreSQL` のパスを通す（Windows）
 
 ### 手順
 
@@ -24,6 +24,7 @@
 1. OK, OK.. でdone。
 
 ### パスが通ったか確認
+
 ```
 $ psql --version
 
@@ -45,6 +46,7 @@ psql (PostgreSQL) 12.1
     ```
 
 ### パスが通ったか確認
+
 ```
 $ mysql --version
 
