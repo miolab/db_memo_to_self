@@ -23,6 +23,7 @@ $ brew install mongodb-community
 
 ```
 # run DB server
+
 $ brew services start mongodb-community
 
 ==> Tapping homebrew/services
@@ -39,6 +40,7 @@ Tapped 1 command (40 files, 267KB).
 
 ```
 # confirm about version (to check about server running)
+
 $ mongo --version
 MongoDB shell version v4.2.5
 git version: 2261279b51ea13df08ae708ff278f0679c59dc32
@@ -51,6 +53,7 @@ build environment:
 
 ```
 # connect DB
+
 $ mongo
 MongoDB shell version v4.2.5
 connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
@@ -64,6 +67,7 @@ connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName
 
 ```
 # disconnect DB
+
 > exit
 bye
 
@@ -71,8 +75,9 @@ bye
 
 ---
 
-```
+## Test 1
 
+```
 > show dbs
 admin   0.000GB
 config  0.000GB
@@ -106,5 +111,4 @@ config  0.000GB
 local   0.000GB
 
 >
-
 ```
