@@ -68,3 +68,43 @@ connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName
 bye
 
 ```
+
+---
+
+```
+
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+
+> use db_test
+switched to db db_test
+
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+
+> db
+db_test
+
+> db.createCollection("users")
+{ "ok" : 1 }
+> show dbs
+admin    0.000GB
+config   0.000GB
+db_test  0.000GB
+local    0.000GB
+
+> db.dropDatabase();
+{ "dropped" : "db_test", "ok" : 1 }
+
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+
+>
+
+```
