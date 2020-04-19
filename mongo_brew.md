@@ -78,21 +78,33 @@ bye
 ## Test 1
 
 ```
+# List DB
+
 > show dbs
 admin   0.000GB
 config  0.000GB
 local   0.000GB
+
+
+# Create DB (if NOT exist) or Read DB (if exist)
 
 > use db_test
 switched to db db_test
 
+
 > show dbs
 admin   0.000GB
 config  0.000GB
 local   0.000GB
 
+
+# Confirm connecting DB
+
 > db
 db_test
+
+
+# Add Collection
 
 > db.createCollection("users")
 { "ok" : 1 }
@@ -102,13 +114,18 @@ config   0.000GB
 db_test  0.000GB
 local    0.000GB
 
+```
+
+```
+# Delete DB
+
 > db.dropDatabase();
 { "dropped" : "db_test", "ok" : 1 }
+
 
 > show dbs
 admin   0.000GB
 config  0.000GB
 local   0.000GB
 
->
 ```
