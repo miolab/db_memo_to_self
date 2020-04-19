@@ -257,3 +257,44 @@ db_test
 }
 
 ```
+
+---
+
+Update Document
+
+```
+> db.users.find().pretty()
+{
+        "_id" : ObjectId("5e9c3f0f3b3fd6b8e4c7fa7c"),
+        "name" : "im",
+        "movie" : "eva"
+}
+{
+        "_id" : ObjectId("5e9c41253b3fd6b8e4c7fa7e"),
+        "name" : "im3",
+        "movie" : "fullmetal alchemist",
+        "music" : "edm"
+}
+
+
+# Update Document
+
+> db.users.update({"name": "im"}, {$set: {"movie": "cowboy bebop"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+
+> db.users.find().pretty()
+{
+        "_id" : ObjectId("5e9c3f0f3b3fd6b8e4c7fa7c"),
+        "name" : "im",
+        "movie" : "cowboy bebop"
+}
+{
+        "_id" : ObjectId("5e9c41253b3fd6b8e4c7fa7e"),
+        "name" : "im3",
+        "movie" : "fullmetal alchemist",
+        "music" : "edm"
+}
+>
+
+```
