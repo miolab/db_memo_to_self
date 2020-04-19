@@ -98,7 +98,7 @@ config  0.000GB
 local   0.000GB
 
 
-# Confirm connecting DB
+# Confirm running DB
 
 > db
 db_test
@@ -127,5 +127,133 @@ local    0.000GB
 admin   0.000GB
 config  0.000GB
 local   0.000GB
+
+```
+
+---
+
+Create & Delete Document
+
+```
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+
+> use db_test
+switched to db db_test
+
+> db
+db_test
+
+
+# Create Document
+
+> db.users.insertOne({name:"im", movie:"eva"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("5e9c3f0f3b3fd6b8e4c7fa7c")
+}
+
+
+# Show Document(s)
+
+> db.users.find()
+{ "_id" : ObjectId("5e9c3f0f3b3fd6b8e4c7fa7c"), "name" : "im", "movie" : "eva" }
+
+
+# Show Document(s) pretty
+
+> db.users.find().pretty()
+{
+        "_id" : ObjectId("5e9c3f0f3b3fd6b8e4c7fa7c"),
+        "name" : "im",
+        "movie" : "eva"
+}
+
+
+# Create Document (add)
+
+> db.users.insertOne({name:"im2", movie:"attack on titan"}
+... )
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("5e9c40a43b3fd6b8e4c7fa7d")
+}
+
+
+> db.users.find().pretty()
+{
+        "_id" : ObjectId("5e9c3f0f3b3fd6b8e4c7fa7c"),
+        "name" : "im",
+        "movie" : "eva"
+}
+{
+        "_id" : ObjectId("5e9c40a43b3fd6b8e4c7fa7d"),
+        "name" : "im2",
+        "movie" : "attack on titan"
+}
+
+
+> db.users.insertOne({name:"im3", movie:"fullmetal alchemist", music:"edm"} )
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("5e9c41253b3fd6b8e4c7fa7e")
+}
+
+
+> db.users.find().pretty()
+{
+        "_id" : ObjectId("5e9c3f0f3b3fd6b8e4c7fa7c"),
+        "name" : "im",
+        "movie" : "eva"
+}
+{
+        "_id" : ObjectId("5e9c40a43b3fd6b8e4c7fa7d"),
+        "name" : "im2",
+        "movie" : "attack on titan"
+}
+{
+        "_id" : ObjectId("5e9c41253b3fd6b8e4c7fa7e"),
+        "name" : "im3",
+        "movie" : "fullmetal alchemist",
+        "music" : "edm"
+}
+
+
+# find the Document
+
+> db.users.find({"name": "im2"}).pretty()
+{
+        "_id" : ObjectId("5e9c40a43b3fd6b8e4c7fa7d"),
+        "name" : "im2",
+        "movie" : "attack on titan"
+}
+```
+
+```
+# Delete Document
+
+> db.users.deleteOne({"name":"im2"})
+{ "acknowledged" : true, "deletedCount" : 1 }
+
+
+> db.users.find()
+{ "_id" : ObjectId("5e9c3f0f3b3fd6b8e4c7fa7c"), "name" : "im", "movie" : "eva" }
+{ "_id" : ObjectId("5e9c41253b3fd6b8e4c7fa7e"), "name" : "im3", "movie" : "fullmetal alchemist", "music" : "edm" }
+
+
+> db.users.find().pretty()
+{
+        "_id" : ObjectId("5e9c3f0f3b3fd6b8e4c7fa7c"),
+        "name" : "im",
+        "movie" : "eva"
+}
+{
+        "_id" : ObjectId("5e9c41253b3fd6b8e4c7fa7e"),
+        "name" : "im3",
+        "movie" : "fullmetal alchemist",
+        "music" : "edm"
+}
 
 ```
