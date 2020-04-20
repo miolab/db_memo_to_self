@@ -1,13 +1,22 @@
 # Homebrew による MongoDB セットアップ
 
-- `Homebrew` バージョン
+- 動作環境 / 構築環境
 
-  ```
-  $ brew --version
-  Homebrew 2.2.13
-  ```
+  - macOS Mojave (10.14.6)
 
-- GitHub : [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
+  - その他バージョン
+
+    ```
+    $ brew --version
+    Homebrew 2.2.13
+
+    $ mongo --version
+    MongoDB shell version v4.2.5
+    ```
+
+- 参考
+
+  (GitHub) [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
 
 ---
 
