@@ -128,7 +128,7 @@ db_test
 	"fsUsedSize" : 73430564864,
 	"fsTotalSize" : 121018208256,
 	"ok" : 1
-
+}
 
 # Add Collection
 
