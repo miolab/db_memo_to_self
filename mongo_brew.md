@@ -107,10 +107,27 @@ config  0.000GB
 local   0.000GB
 
 
-# Confirm running DB
+# Confirm running DB status
 
 > db
 db_test
+
+> db.stats()
+{
+	"db" : "db_test",
+	"collections" : 1,
+	"views" : 0,
+	"objects" : 2,
+	"avgObjSize" : 70.5,
+	"dataSize" : 141,
+	"storageSize" : 36864,
+	"numExtents" : 0,
+	"indexes" : 1,
+	"indexSize" : 36864,
+	"scaleFactor" : 1,
+	"fsUsedSize" : 73430564864,
+	"fsTotalSize" : 121018208256,
+	"ok" : 1
 
 
 # Add Collection
