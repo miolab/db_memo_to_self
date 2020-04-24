@@ -419,3 +419,64 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 >
 
 ```
+
+---
+
+### extract field
+
+```
+> db.users.find()
+{ "_id" : ObjectId("5ea2835a5cc6fafc5bc910ef"), "name" : "math", "score" : 90 }
+{ "_id" : ObjectId("5ea283885cc6fafc5bc910f0"), "name" : "science", "score" : 80 }
+{ "_id" : ObjectId("5ea284985cc6fafc5bc910f1"), "name" : "geography", "score" : 65 }
+
+> // 通常検索
+> db.users.find({name: "math"})
+{ "_id" : ObjectId("5ea2835a5cc6fafc5bc910ef"), "name" : "math", "score" : 90 }
+
+> // 〜以上
+> db.users.find({score: {$gte: 80}})
+{ "_id" : ObjectId("5ea2835a5cc6fafc5bc910ef"), "name" : "math", "score" : 90 }
+{ "_id" : ObjectId("5ea283885cc6fafc5bc910f0"), "name" : "science", "score" : 80 }
+
+> // 〜を上回る
+> db.users.find({score: {$gt: 80}})
+{ "_id" : ObjectId("5ea2835a5cc6fafc5bc910ef"), "name" : "math", "score" : 90 }
+
+> // 〜以下
+> db.users.find({score: {$lte: 80}})
+{ "_id" : ObjectId("5ea283885cc6fafc5bc910f0"), "name" : "science", "score" : 80 }
+{ "_id" : ObjectId("5ea284985cc6fafc5bc910f1"), "name" : "geography", "score" : 65 }
+
+> // 〜を下回る
+> db.users.find({score: {$lt: 80}})
+{ "_id" : ObjectId("5ea284985cc6fafc5bc910f1"), "name" : "geography", "score" : 65 }
+
+> // equal
+> db.users.find({score: {$eq: 80}})
+{ "_id" : ObjectId("5ea283885cc6fafc5bc910f0"), "name" : "science", "score" : 80 }
+
+> NOT equal
+> db.users.find({score: {$ne: 80}})
+{ "_id" : ObjectId("5ea2835a5cc6fafc5bc910ef"), "name" : "math", "score" : 90 }
+{ "_id" : ObjectId("5ea284985cc6fafc5bc910f1"), "name" : "geography", "score" : 65 }
+
+
+> // JavaScriptの正規表現を使う
+> db.users.find({name: /ma/})
+{ "_id" : ObjectId("5ea2835a5cc6fafc5bc910ef"), "name" : "math", "score" : 90 }
+
+> db.users.find({name: /h/})
+{ "_id" : ObjectId("5ea2835a5cc6fafc5bc910ef"), "name" : "math", "score" : 90 }
+{ "_id" : ObjectId("5ea284985cc6fafc5bc910f1"), "name" : "geography", "score" : 6
+5 }
+
+> db.users.find({name: /^s/})
+{ "_id" : ObjectId("5ea283885cc6fafc5bc910f0"), "name" : "science", "score" : 80
+}
+
+
+> // フィールドの値に何が入っているかを調べる
+> db.users.distinct("name")
+[ "geography", "math", "science" ]
+```
