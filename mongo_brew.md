@@ -130,16 +130,41 @@ db_test
 	"ok" : 1
 }
 
+
 # Add Collection
 
 > db.createCollection("users")
 { "ok" : 1 }
+
 > show dbs
 admin    0.000GB
 config   0.000GB
 db_test  0.000GB
 local    0.000GB
 
+
+# confirm Collections
+
+> show collections
+users
+
+
+# rename Collection
+
+> db.users.renameCollection("players")
+{ "ok" : 1 }
+
+> show collections
+players
+
+
+# drop Collection
+
+> db.players.drop()
+true
+
+> show collections
+>
 ```
 
 ```
