@@ -512,3 +512,39 @@ WriteResult({ "nInserted" : 1 })
 { "_id" : ObjectId("5ea283885cc6fafc5bc910f0"), "name" : "science", "score" : 80 }
 { "_id" : ObjectId("5ea284985cc6fafc5bc910f1"), "name" : "geography", "score" : 65 }
 ```
+
+---
+
+### 表示する`field`を指定
+
+```
+> // true(1) か false(0) を指定
+> db.users.find({}, {name: true, score: 1})
+{ "_id" : ObjectId("5ea2835a5cc6fafc5bc910ef"), "name" : "math", "score" : 90 }
+{ "_id" : ObjectId("5ea283885cc6fafc5bc910f0"), "name" : "science", "score" : 80 }
+{ "_id" : ObjectId("5ea284985cc6fafc5bc910f1"), "name" : "geography", "score" : 65 }
+{ "_id" : ObjectId("5ea293d0975efb40f5beb893"), "name" : "history", "score" : 72 }
+
+> db.users.find({}, {score: 0})
+{ "_id" : ObjectId("5ea2835a5cc6fafc5bc910ef"), "name" : "math" }
+{ "_id" : ObjectId("5ea283885cc6fafc5bc910f0"), "name" : "science" }
+{ "_id" : ObjectId("5ea284985cc6fafc5bc910f1"), "name" : "geography" }
+{ "_id" : ObjectId("5ea293d0975efb40f5beb893"), "name" : "history", "type" : "jp" }
+
+> // Error になるパターン（1,0が混在しているため）
+> db.users.find({}, {name: 1, score: 0})
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "Projection cannot have a mix of inclusion and exclusion.",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+
+> // _id だけは例外で扱える
+> db.users.find({}, {_id: 0, score: 1})
+{ "score" : 90 }
+{ "score" : 80 }
+{ "score" : 65 }
+{ "score" : 72 }
+
+```
