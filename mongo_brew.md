@@ -309,6 +309,76 @@ db_test
 
 ```
 
+- _note :_
+
+  `mongo`中で **`JavaScript`構文を使う** ことも可能。
+
+        ```
+        > use mydb
+        switched to db mydb
+
+        > db
+        mydb
+
+        > for (let i=0; i<10; i++){
+        ... db.users.insert({
+        ... score: Math.random()
+        ... });
+        ... }
+        WriteResult({ "nInserted" : 1 })
+
+        > db.users.count()
+        10
+
+        > db.users.find().pretty()
+        {
+                "_id" : ObjectId("5ea269d5300a3db730b7d9c6"),
+                "score" : 0.3424395295988656
+        }
+        {
+                "_id" : ObjectId("5ea269d5300a3db730b7d9c7"),
+                "score" : 0.24752730877269857
+        }
+        {
+                "_id" : ObjectId("5ea269d5300a3db730b7d9c8"),
+                "score" : 0.9113878946219832
+        }
+        {
+                "_id" : ObjectId("5ea269d5300a3db730b7d9c9"),
+                "score" : 0.10169106071842116
+        }
+        {
+                "_id" : ObjectId("5ea269d5300a3db730b7d9ca"),
+                "score" : 0.9701633185848546
+        }
+        {
+                "_id" : ObjectId("5ea269d5300a3db730b7d9cb"),
+                "score" : 0.35060178300607925
+        }
+        {
+                "_id" : ObjectId("5ea269d5300a3db730b7d9cc"),
+                "score" : 0.15544475238848432
+        }
+        {
+                "_id" : ObjectId("5ea269d5300a3db730b7d9cd"),
+                "score" : 0.20395166378332164
+        }
+        {
+                "_id" : ObjectId("5ea269d5300a3db730b7d9ce"),
+                "score" : 0.1400865230286369
+        }
+        {
+                "_id" : ObjectId("5ea269d5300a3db730b7d9cf"),
+                "score" : 0.6242031598658185
+        }
+
+        > db.users.remove({})
+        WriteResult({ "nRemoved" : 10 })
+
+        > db.users.find()
+        >
+        ```
+
 ---
 
 Update Document
