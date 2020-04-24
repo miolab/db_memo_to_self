@@ -480,3 +480,35 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 > db.users.distinct("name")
 [ "geography", "math", "science" ]
 ```
+
+```
+> // AND 抽出
+> db.users.find({name: /e/, score: {$gt: 77}})
+{ "_id" : ObjectId("5ea283885cc6fafc5bc910f0"), "name" : "science", "score" : 80 }
+
+> // OR 抽出
+> db.users.find({$or: [{name: /e/}, {score: {$gt: 77}}]})
+{ "_id" : ObjectId("5ea2835a5cc6fafc5bc910ef"), "name" : "math", "score" : 90 }
+{ "_id" : ObjectId("5ea283885cc6fafc5bc910f0"), "name" : "science", "score" : 80 }
+{ "_id" : ObjectId("5ea284985cc6fafc5bc910f1"), "name" : "geography", "score" : 65 }
+
+> // OR 抽出（同一field内）
+> db.users.find({score: {$in: [90, 65]}})
+{ "_id" : ObjectId("5ea2835a5cc6fafc5bc910ef"), "name" : "math", "score" : 90 }
+{ "_id" : ObjectId("5ea284985cc6fafc5bc910f1"), "name" : "geography", "score" : 65 }
+
+> // exists 抽出
+> db.users.insert({name: "history", score: 72, type: "jp"})
+WriteResult({ "nInserted" : 1 })
+
+> db.users.find({type: {$exists: true}})
+{ "_id" : ObjectId("5ea293d0975efb40f5beb893"), "name" : "history", "score" : 72, "type" : "jp" }
+> // 「true」の代わりに「1」でも可
+> db.users.find({type: {$exists: 1}})
+{ "_id" : ObjectId("5ea293d0975efb40f5beb893"), "name" : "history", "score" : 72, "type" : "jp" }
+
+> db.users.find({type: {$exists: false}})
+{ "_id" : ObjectId("5ea2835a5cc6fafc5bc910ef"), "name" : "math", "score" : 90 }
+{ "_id" : ObjectId("5ea283885cc6fafc5bc910f0"), "name" : "science", "score" : 80 }
+{ "_id" : ObjectId("5ea284985cc6fafc5bc910f1"), "name" : "geography", "score" : 65 }
+```
