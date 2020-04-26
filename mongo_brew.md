@@ -547,4 +547,58 @@ Error: error: {
 { "score" : 65 }
 { "score" : 72 }
 
+
+> // その他：findOne（1件だけ抽出）
+> db.users.findOne({}, {_id: 0})
+{ "name" : "math", "score" : 90 }
 ```
+
+---
+
+- `find()` と組み合わせて使うその他コマンド
+
+  - skip()
+
+  ```
+  > db.users.find({}, {_id: 0})
+  { "name" : "math", "score" : 90 }
+  { "name" : "science", "score" : 80 }
+  { "name" : "geography", "score" : 65 }
+  { "name" : "history", "score" : 72, "type" : "jp" }
+
+  > db.users.find({}, {_id: 0}).skip(2);
+  { "name" : "geography", "score" : 65 }
+  { "name" : "history", "score" : 72, "type" : "jp" }
+  ```
+
+  - sort()
+
+  ```
+  > // 昇順
+  > db.users.find({}, {_id: 0}).sort({score: 1})
+  { "name" : "geography", "score" : 65 }
+  { "name" : "history", "score" : 72, "type" : "jp" }
+  { "name" : "science", "score" : 80 }
+  { "name" : "math", "score" : 90 }
+
+  > // 降順
+  > db.users.find({}, {_id: 0}).sort({score: -1})
+  { "name" : "math", "score" : 90 }
+  { "name" : "science", "score" : 80 }
+  { "name" : "history", "score" : 72, "type" : "jp" }
+  { "name" : "geography", "score" : 65 }
+  ```
+
+  - limit()
+
+  ```
+  > db.users.find({}, {_id: 0}).limit(3)
+  { "name" : "math", "score" : 90 }
+  { "name" : "science", "score" : 80 }
+  { "name" : "geography", "score" : 65 }
+
+  > db.users.find({}, {_id: 0}).sort({score: -1}).limit(3)
+  { "name" : "math", "score" : 90 }
+  { "name" : "science", "score" : 80 }
+  { "name" : "history", "score" : 72, "type" : "jp" }
+  ```
