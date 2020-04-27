@@ -75,6 +75,8 @@ $ brew install mongodb-community
   >
   ```
 
+  - `$ mongo hogehoge_db` のようにすれば、所望の DB にダイレクトで接続。
+
 - disconnect DB
 
   ```
