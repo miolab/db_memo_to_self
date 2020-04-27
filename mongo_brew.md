@@ -602,3 +602,54 @@ Error: error: {
   { "name" : "science", "score" : 80 }
   { "name" : "history", "score" : 72, "type" : "jp" }
   ```
+
+---
+
+- `update()` その他コマンド
+
+```
+> db.users.find({name: "math"}, {_id: 0})
+{ "name" : "math", "score" : 90 }
+
+
+> // 加算（$inc）
+> db.users.update({name: "math"}, {$inc: {score: 10}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+> db.users.find({name: "math"}, {_id: 0})
+{ "name" : "math", "score" : 100 }
+
+> db.users.update({name: "math"}, {$inc: {score: -5}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+> db.users.find({name: "math"}, {_id: 0})
+{ "name" : "math", "score" : 95 }
+
+
+> // 乗算（$mul）
+> db.users.update({name: "math"}, {$mul: {score: 2}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.users.find({name: "math"}, {_id: 0})
+{ "name" : "math", "score" : 190 }
+
+
+> // field リネーム
+> db.users.update({name: "math"}, {$rename: {score: "point"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.users.find({name: "math"}, {_id: 0})
+{ "name" : "math", "point" : 190 }
+
+
+> // field 追加（$set）
+> db.users.update({name: "math"}, {$set: {type: "subject"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.users.find({name: "math"}, {_id: 0})
+{ "name" : "math", "point" : 190, "type" : "subject" }
+
+
+> // field 削除（$unset）
+> db.users.update({name: "math"}, {$unset: {type: "", point: ""}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.users.find({name: "math"}, {_id: 0})
+{ "name" : "math", "score" : 190 }
+```
