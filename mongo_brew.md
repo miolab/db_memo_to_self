@@ -809,3 +809,42 @@ WriteResult({
         }
 })
 ```
+
+---
+
+## DB のバックアップと復元
+
+```
+$ mongodump -d mydb  // バックアップ作成
+.
+.
+
+$ mongo mydb
+> db
+mydb
+> db.users.remove({name: "math"})
+WriteResult({ "nRemoved" : 1 })
+> db.users.find()
+{ "_id" : ObjectId("5ea283885cc6fafc5bc910f0"), "name" : "science", "score" : 80 }
+{ "_id" : ObjectId("5ea284985cc6fafc5bc910f1"), "name" : "geography", "score" : 65 }
+{ "_id" : ObjectId("5ea293d0975efb40f5beb893"), "name" : "history", "score" : 72, "type" : "jp" }
+> exit
+bye
+
+
+$ mongorestore --drop  // 復元。--drop は「上書き」
+.
+.
+
+$ mongo mydb
+> db.users.find()
+{ "_id" : ObjectId("5ea2835a5cc6fafc5bc910ef"), "name" : "math", "score" : 190 }
+{ "_id" : ObjectId("5ea283885cc6fafc5bc910f0"), "name" : "science", "score" : 80 }
+{ "_id" : ObjectId("5ea284985cc6fafc5bc910f1"), "name" : "geography", "score" : 65 }
+{ "_id" : ObjectId("5ea293d0975efb40f5beb893"), "name" : "history", "score" : 72, "type" : "jp" }
+```
+
+その他仕様方法は、以下で確認
+
+- \$ mongodump --help
+- \$ mongorestore --help
