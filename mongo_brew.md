@@ -653,3 +653,56 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 > db.users.find({name: "math"}, {_id: 0})
 { "name" : "math", "score" : 190 }
 ```
+
+- upsert
+
+```
+> // データが存在していたら更新し、存在してなかったら新規作成（upsert）
+> db.users.update({name: "english"}, {name: "english", score: 85}, {upsert: true}
+)
+WriteResult({
+        "nMatched" : 0,
+        "nUpserted" : 1,
+        "nModified" : 0,
+        "_id" : ObjectId("5ea626b7384e74b99c3abfbf")
+})
+
+> db.users.find()
+{ "_id" : ObjectId("5ea2835a5cc6fafc5bc910ef"), "name" : "math", "score" : 190 }
+{ "_id" : ObjectId("5ea283885cc6fafc5bc910f0"), "name" : "science", "score" : 80 }
+{ "_id" : ObjectId("5ea284985cc6fafc5bc910f1"), "name" : "geography", "score" : 65 }
+{ "_id" : ObjectId("5ea293d0975efb40f5beb893"), "name" : "history", "score" : 72, "type" : "jp" }
+{ "_id" : ObjectId("5ea626b7384e74b99c3abfbf"), "name" : "english", "score" : 85 }
+
+> db.users.update({name: "english"}, {name: "english", score: 160}, {upsert: true
+})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.users.find()
+{ "_id" : ObjectId("5ea2835a5cc6fafc5bc910ef"), "name" : "math", "score" : 190 }
+{ "_id" : ObjectId("5ea283885cc6fafc5bc910f0"), "name" : "science", "score" : 80
+}
+{ "_id" : ObjectId("5ea284985cc6fafc5bc910f1"), "name" : "geography", "score" : 6
+5 }
+{ "_id" : ObjectId("5ea293d0975efb40f5beb893"), "name" : "history", "score" : 72,
+ "type" : "jp" }
+{ "_id" : ObjectId("5ea626b7384e74b99c3abfbf"), "name" : "english", "score" : 160
+ }
+
+```
+
+---
+
+- remove
+
+```
+> db.users.remove({name: "english"})
+WriteResult({ "nRemoved" : 1 })
+
+> db.users.find()
+{ "_id" : ObjectId("5ea2835a5cc6fafc5bc910ef"), "name" : "math", "score" : 190 }
+{ "_id" : ObjectId("5ea283885cc6fafc5bc910f0"), "name" : "science", "score" : 80 }
+{ "_id" : ObjectId("5ea284985cc6fafc5bc910f1"), "name" : "geography", "score" : 65 }
+{ "_id" : ObjectId("5ea293d0975efb40f5beb893"), "name" : "history", "score" : 72, "type" : "jp" }
+```
+
+---
