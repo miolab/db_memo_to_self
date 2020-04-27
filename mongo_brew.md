@@ -706,3 +706,106 @@ WriteResult({ "nRemoved" : 1 })
 ```
 
 ---
+
+## index
+
+```
+> db.users.getIndexes()
+[
+        {
+                "v" : 2,
+                "key" : {
+                        "_id" : 1
+                },
+                "name" : "_id_",
+                "ns" : "mydb.users"
+        }
+]
+
+
+> // 降順にindexをつくる
+> db.users.createIndex({score: -1})
+{
+        "createdCollectionAutomatically" : false,
+        "numIndexesBefore" : 1,
+        "numIndexesAfter" : 2,
+        "ok" : 1
+}
+
+> db.users.getIndexes()
+[
+        {
+                "v" : 2,
+                "key" : {
+                        "_id" : 1
+                },
+                "name" : "_id_",
+                "ns" : "mydb.users"
+        },
+        {
+                "v" : 2,
+                "key" : {
+                        "score" : -1
+                },
+                "name" : "score_-1",
+                "ns" : "mydb.users"
+        }
+]
+
+
+> // indexを削除
+> db.users.dropIndex("score_-1")
+{ "nIndexesWas" : 2, "ok" : 1 }
+
+> db.users.getIndexes()
+[
+        {
+                "v" : 2,
+                "key" : {
+                        "_id" : 1
+                },
+                "name" : "_id_",
+                "ns" : "mydb.users"
+        }
+]
+
+
+> // uniqueなインデックスを作る
+> db.users.createIndex({name: 1}, {unique: true})
+{
+        "createdCollectionAutomatically" : false,
+        "numIndexesBefore" : 1,
+        "numIndexesAfter" : 2,
+        "ok" : 1
+}
+
+> db.users.getIndexes()
+[
+        {
+                "v" : 2,
+                "key" : {
+                        "_id" : 1
+                },
+                "name" : "_id_",
+                "ns" : "mydb.users"
+        },
+        {
+                "v" : 2,
+                "unique" : true,
+                "key" : {
+                        "name" : 1
+                },
+                "name" : "name_1",
+                "ns" : "mydb.users"
+        }
+]
+
+> db.users.insert({name: "math"})
+WriteResult({
+        "nInserted" : 0,
+        "writeError" : {
+                "code" : 11000,
+                "errmsg" : "E11000 duplicate key error collection: mydb.users index: name_1 dup key: { name: \"math\" }"
+        }
+})
+```
