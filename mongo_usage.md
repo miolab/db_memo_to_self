@@ -11,6 +11,14 @@
     MongoDB shell version v4.2.5
     ```
 
+## Start/Stop MongoDB (mongodb-community) Server
+
+```
+$ brew services start mongodb-community
+
+$ brew services stop mongodb-community
+```
+
 ## Basic Usage
 
 ```
