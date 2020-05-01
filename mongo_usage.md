@@ -19,6 +19,12 @@ $ brew services start mongodb-community
 $ brew services stop mongodb-community
 ```
 
+mongo shell start
+
+```
+$ mongo
+```
+
 ## Basic Usage
 
 ```
