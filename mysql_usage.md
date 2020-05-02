@@ -217,3 +217,32 @@
   +----+---------+-------+-------+
   3 rows in set (0.00 sec)
   ```
+
+---
+
+### Read
+
+- データ抽出いろいろ
+
+  ```
+  mysql> select * from menu;
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  1 | math    | 120.2 |    10 |
+  |  2 | english |  88.1 |     8 |
+  |  3 | physics |  90.5 |     8 |
+  +----+---------+-------+-------+
+  3 rows in set (0.00 sec)
+
+  mysql> select id, name from menu;
+  +----+---------+
+  | id | name    |
+  +----+---------+
+  |  1 | math    |
+  |  2 | english |
+  |  3 | physics |
+  +----+---------+
+  3 rows in set (0.00 sec)
+
+  ```
