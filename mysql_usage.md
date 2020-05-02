@@ -246,3 +246,17 @@
   3 rows in set (0.00 sec)
 
   ```
+
+## Other commands
+
+- レコード件数をカウント
+
+  ```
+  mysql> select count(*) from menu;
+  +----------+
+  | count(*) |
+  +----------+
+  |        3 |
+  +----------+
+  1 row in set (0.01 sec)
+  ```
