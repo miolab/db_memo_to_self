@@ -1,4 +1,6 @@
-# MySQL Homebrew
+# MySQL を Homebrew でインストールしてセットアップ
+
+## Setup
 
 - `MySQL`の brew パッケージ確認
 
@@ -63,18 +65,43 @@
   mysql  Ver 14.14 Distrib 5.7.29, for osx10.14 (x86_64) using  EditLine wrapper
   ```
 
-- サーバー起動/再起動/停止
+- 文字コード`utf8`設定
+
+  ```
+  $ vim /usr/local/etc/my.cnf
+
+  # Default Homebrew MySQL server config
+  [mysqld]
+  character-set-server=utf8    -> この1行を追記
+  # Only allow connections from localhost
+  bind-address = 127.0.0.1
+  ~
+  ```
+
+---
+
+## Usage
+
+- **サーバー起動**
 
   ```
   $ brew services start mysql@5.7
   ==> Successfully started `mysql@5.7` (label: homebrew.mxcl.mysql@5.7)
-
-  $ brew services restart mysql@5.7
-  Stopping `mysql@5.7`... (might take a while)
-  ==> Successfully stopped `mysql@5.7` (label: homebrew.mxcl.mysql@5.7)
-  ==> Successfully started `mysql@5.7` (label: homebrew.mxcl.mysql@5.7)
-
-  $ brew services stop mysql@5.7
-  Stopping `mysql@5.7`... (might take a while)
-  ==> Successfully stopped `mysql@5.7` (label: homebrew.mxcl.mysql@5.7)
   ```
+
+  - 再起動
+
+    ```
+    $ brew services restart mysql@5.7
+    Stopping `mysql@5.7`... (might take a while)
+    ==> Successfully stopped `mysql@5.7` (label: homebrew.mxcl.mysql@5.7)
+    ==> Successfully started `mysql@5.7` (label: homebrew.mxcl.mysql@5.7)
+    ```
+
+  - 停止
+
+    ```
+    $ brew services stop mysql@5.7
+    Stopping `mysql@5.7`... (might take a while)
+    ==> Successfully stopped `mysql@5.7` (label: homebrew.mxcl.mysql@5.7)
+    ```
