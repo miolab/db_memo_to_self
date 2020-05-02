@@ -110,3 +110,21 @@
   3 rows in set (0.00 sec)
 
   ```
+
+- `row`のデータ更新
+
+  ```
+  mysql> update menu set score=120.2 where name="math";
+  Query OK, 1 row affected (0.00 sec)
+  Rows matched: 1  Changed: 1  Warnings: 0
+
+  mysql> select * from menu;
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  1 | math    | 120.2 |    10 |
+  |  2 | english |  88.1 |     8 |
+  |  3 | physics |  90.5 |     8 |
+  +----+---------+-------+-------+
+  3 rows in set (0.00 sec)
+  ```
