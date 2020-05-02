@@ -136,3 +136,68 @@
   +----+---------+-------+-------+
   3 rows in set (0.00 sec)
   ```
+
+- `row`のデータ削除
+
+  ```
+  // preparing
+  mysql> insert into menu values (null, "japanese", 77.7, 5);
+  Query OK, 1 row affected (0.00 sec)
+
+  mysql> select * from menu;
+  +----+----------+-------+-------+
+  | id | name     | score | stars |
+  +----+----------+-------+-------+
+  |  1 | math     | 120.2 |    10 |
+  |  2 | english  |  88.1 |     8 |
+  |  3 | physics  |  90.5 |     8 |
+  |  4 | japanese |  77.7 |     5 |
+  +----+----------+-------+-------+
+  4 rows in set (0.00 sec)
+
+
+  // DELETE
+  mysql> delete from menu where name="japanese";
+  Query OK, 1 row affected (0.00 sec)
+
+  mysql> select * from menu;
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  1 | math    | 120.2 |    10 |
+  |  2 | english |  88.1 |     8 |
+  |  3 | physics |  90.5 |     8 |
+  +----+---------+-------+-------+
+  3 rows in set (0.00 sec)
+
+
+  // preparing
+  mysql> insert into menu values (null, "japanese", 77.7, 5);
+  Query OK, 1 row affected (0.00 sec)
+
+  mysql> select * from menu;
+  +----+----------+-------+-------+
+  | id | name     | score | stars |
+  +----+----------+-------+-------+
+  |  1 | math     | 120.2 |    10 |
+  |  2 | english  |  88.1 |     8 |
+  |  3 | physics  |  90.5 |     8 |
+  |  5 | japanese |  77.7 |     5 |
+  +----+----------+-------+-------+
+  4 rows in set (0.00 sec)
+
+
+  // DELETE
+  mysql> delete from menu where stars=5;
+  Query OK, 1 row affected (0.00 sec)
+
+  mysql> select * from menu;
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  1 | math    | 120.2 |    10 |
+  |  2 | english |  88.1 |     8 |
+  |  3 | physics |  90.5 |     8 |
+  +----+---------+-------+-------+
+  3 rows in set (0.00 sec)
+  ```
