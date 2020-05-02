@@ -222,7 +222,9 @@
 
 ### Read
 
-- データ抽出いろいろ
+### データ抽出いろいろ
+
+- column指定
 
   ```
   mysql> select * from menu;
@@ -246,6 +248,72 @@
   3 rows in set (0.00 sec)
 
   ```
+
+- `AND`, `OR`, `NOT` 検索
+
+  - AND
+
+    ```
+    mysql> select * from menu
+        -> where id >= 2 and score < 90.5;
+    +----+---------+-------+-------+
+    | id | name    | score | stars |
+    +----+---------+-------+-------+
+    |  2 | english |  88.1 |     8 |
+    +----+---------+-------+-------+
+    1 row in set (0.04 sec)
+    ```
+
+  - OR
+  
+    ```
+    mysql> select * from menu
+        -> where id >= 2 or score < 95;
+    +----+---------+-------+-------+
+    | id | name    | score | stars |
+    +----+---------+-------+-------+
+    |  2 | english |  88.1 |     8 |
+    |  3 | physics |  90.5 |     8 |
+    +----+---------+-------+-------+
+    2 rows in set (0.00 sec)
+    ```
+
+  - NOT
+
+    ```
+    mysql> select * from menu
+        -> where not id = 3;
+    +----+---------+-------+-------+
+    | id | name    | score | stars |
+    +----+---------+-------+-------+
+    |  1 | math    | 120.2 |    10 |
+    |  2 | english |  88.1 |     8 |
+    +----+---------+-------+-------+
+    2 rows in set (0.01 sec)
+
+
+    mysql> select * from menu
+        -> where id <> 3;
+    +----+---------+-------+-------+
+    | id | name    | score | stars |
+    +----+---------+-------+-------+
+    |  1 | math    | 120.2 |    10 |
+    |  2 | english |  88.1 |     8 |
+    +----+---------+-------+-------+
+    2 rows in set (0.00 sec)
+
+
+    mysql> select * from menu
+        -> where id != 3;
+    +----+---------+-------+-------+
+    | id | name    | score | stars |
+    +----+---------+-------+-------+
+    |  1 | math    | 120.2 |    10 |
+    |  2 | english |  88.1 |     8 |
+    +----+---------+-------+-------+
+    2 rows in set (0.00 sec)
+    ```
+
 
 ## Other commands
 
