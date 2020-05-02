@@ -84,7 +84,7 @@
   Database changed
   ```
 
-- `table`作成 & `row`を追加
+- `table`作成 & `Column`作成
 
   ```
   mysql> drop table if exists menu;
@@ -96,7 +96,15 @@
       -> score real,
       -> stars integer);
   Query OK, 0 rows affected (0.01 sec)
+  ```
 
+---
+
+### Create
+
+- `row`を追加
+
+  ```
   mysql> insert into menu values (null, "math", 85.5, 10);
   Query OK, 1 row affected (0.00 sec)
 
@@ -119,6 +127,10 @@
 
   ```
 
+---
+
+### Update
+
 - `row`のデータ更新
 
   ```
@@ -136,6 +148,10 @@
   +----+---------+-------+-------+
   3 rows in set (0.00 sec)
   ```
+
+---
+
+### Delete
 
 - `row`のデータ削除
 
