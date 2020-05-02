@@ -69,6 +69,14 @@
   Query OK, 1 row affected (0.00 sec)
   ```
 
+  - DB 削除
+
+    `mysql> drop database if exists mock_db;`
+
+    - 存在確定 DB を削除するなら
+
+      `mysql> drop database mock_db;` でも可
+
 - 使用する `DB` を選択/切り替え
 
   ```
