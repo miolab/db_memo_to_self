@@ -321,7 +321,34 @@
 - `BETWEEN` （○以上○以下）
 
   ```
-  mysql> select * from menu where stars between 5 and 8;
+  mysql> select * from menu
+      -> where stars between 5 and 8;
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  2 | english |  88.1 |     8 |
+  |  3 | physics |  90.5 |     8 |
+  +----+---------+-------+-------+
+  2 rows in set (0.00 sec)
+  ```
+
+- `IN` / `NOT IN`
+
+  ```
+  // IN
+  mysql> select * from menu 
+    -> where stars in(9, 10, 11);
+  +----+------+-------+-------+
+  | id | name | score | stars |
+  +----+------+-------+-------+
+  |  1 | math | 120.2 |    10 |
+  +----+------+-------+-------+
+  1 row in set (0.00 sec)
+
+
+  // NOT IN
+  mysql> mysql> select * from menu
+      -> where stars not in(9, 10, 11);
   +----+---------+-------+-------+
   | id | name    | score | stars |
   +----+---------+-------+-------+
