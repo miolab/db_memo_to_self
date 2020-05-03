@@ -60,6 +60,8 @@
   4 rows in set (0.01 sec)
   ```
 
+---
+
 ## CRUD commands
 
 - DB 作成
@@ -237,7 +239,9 @@
   +----+---------+-------+-------+
   3 rows in set (0.00 sec)
 
-  mysql> select id, name from menu;
+
+  mysql> select id, name
+      -> from menu;
   +----+---------+
   | id | name    |
   +----+---------+
@@ -265,7 +269,7 @@
     ```
 
   - OR
-  
+
     ```
     mysql> select * from menu
         -> where id >= 2 or score < 95;
@@ -314,6 +318,20 @@
     2 rows in set (0.00 sec)
     ```
 
+- `BETWEEN` （○以上○以下）
+
+  ```
+  mysql> select * from menu where stars between 5 and 8;
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  2 | english |  88.1 |     8 |
+  |  3 | physics |  90.5 |     8 |
+  +----+---------+-------+-------+
+  2 rows in set (0.00 sec)
+  ```
+
+---
 
 ## Other commands
 
