@@ -358,6 +358,88 @@
   2 rows in set (0.00 sec)
   ```
 
+- `IS NULL` / `ISNULL`
+
+  ```
+  // preparing
+  mysql> insert into menu values(
+      -> null,
+      -> "some subject",
+      -> 99.9,
+      -> null);
+  Query OK, 1 row affected (0.00 sec)
+
+  mysql> select * from menu;
+  +----+--------------+-------+-------+
+  | id | name         | score | stars |
+  +----+--------------+-------+-------+
+  |  1 | math         | 120.2 |    10 |
+  |  2 | english      |  88.1 |     8 |
+  |  3 | physics      |  90.5 |     8 |
+  |  6 | some subject |  99.9 |  NULL |
+  +----+--------------+-------+-------+
+  4 rows in set (0.01 sec)
+
+
+  // IS NULL / ISNULL
+  mysql>  select * from menu
+      -> where stars is null;
+  +----+--------------+-------+-------+
+  | id | name         | score | stars |
+  +----+--------------+-------+-------+
+  |  6 | some subject |  99.9 |  NULL |
+  +----+--------------+-------+-------+
+  1 row in set (0.00 sec)
+
+  mysql> select * from menu
+      -> where isnull(stars);
+  +----+--------------+-------+-------+
+  | id | name         | score | stars |
+  +----+--------------+-------+-------+
+  |  6 | some subject |  99.9 |  NULL |
+  +----+--------------+-------+-------+
+  1 row in set (0.01 sec)
+
+
+  // IS NOT NULL / NOT ISNULL
+  mysql> select * from menu
+      -> where stars is not null;
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  1 | math    | 120.2 |    10 |
+  |  2 | english |  88.1 |     8 |
+  |  3 | physics |  90.5 |     8 |
+  +----+---------+-------+-------+
+  3 rows in set (0.00 sec)
+
+  mysql> select * from menu
+      -> where not isnull(stars);
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  1 | math    | 120.2 |    10 |
+  |  2 | english |  88.1 |     8 |
+  |  3 | physics |  90.5 |     8 |
+  +----+---------+-------+-------+
+  3 rows in set (0.00 sec)
+
+
+  // delete
+  mysql> delete from menu where stars is null;
+  Query OK, 1 row affected (0.00 sec)
+
+  mysql> select * from menu;
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  1 | math    | 120.2 |    10 |
+  |  2 | english |  88.1 |     8 |
+  |  3 | physics |  90.5 |     8 |
+  +----+---------+-------+-------+
+  3 rows in set (0.00 sec)
+  ```
+
 ---
 
 ## Other commands
