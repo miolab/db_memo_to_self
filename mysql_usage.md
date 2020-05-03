@@ -493,7 +493,7 @@
   2 rows in set (0.00 sec)
 
 
-  // 2件目から2件抽出
+  // 2件目(=1)から2件抽出
   mysql> select * from menu
       -> order by score desc
       -> limit 1,2;
@@ -502,6 +502,30 @@
   +----+---------+-------+-------+
   |  3 | physics |  90.5 |     8 |
   |  2 | english |  88.1 |     8 |
+  +----+---------+-------+-------+
+  2 rows in set (0.00 sec)
+  ```
+
+- `LIKE`
+
+  ```
+  mysql> select * from menu
+      -> where name like "ma%";
+  +----+------+-------+-------+
+  | id | name | score | stars |
+  +----+------+-------+-------+
+  |  1 | math | 120.2 |    10 |
+  +----+------+-------+-------+
+  1 row in set (0.00 sec)
+
+
+  mysql> select * from menu
+      -> where name like "%i%";
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  2 | english |  88.1 |     8 |
+  |  3 | physics |  90.5 |     8 |
   +----+---------+-------+-------+
   2 rows in set (0.00 sec)
   ```
