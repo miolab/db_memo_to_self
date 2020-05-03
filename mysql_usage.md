@@ -45,6 +45,20 @@
   1 row in set (0.00 sec)
   ```
 
+- ユーザーの __一覧情報__
+
+  ```
+  mysql> select user, host from mysql.user;
+  +---------------+-----------+
+  | user          | host      |
+  +---------------+-----------+
+  | mysql.session | localhost |
+  | mysql.sys     | localhost |
+  | root          | localhost |
+  +---------------+-----------+
+  3 rows in set (0.00 sec)
+  ```
+
 - DB 一覧
 
   ```
@@ -53,13 +67,49 @@
   | Database           |
   +--------------------+
   | information_schema |
+  | mydb_test          |
   | mysql              |
   | performance_schema |
   | sys                |
   +--------------------+
-  4 rows in set (0.01 sec)
+  5 rows in set (0.01 sec)
   ```
 
+- Table 一覧
+
+  ```
+  mysql> show tables from mydb_test;
+  +---------------------+
+  | Tables_in_mydb_test |
+  +---------------------+
+  | menu                |
+  +---------------------+
+  1 row in set (0.00 sec)
+  ```
+
+- __いま使用中のDB__ を確認
+
+  ```
+  mysql> select database();
+  +------------+
+  | database() |
+  +------------+
+  | mydb_test  |
+  +------------+
+  1 row in set (0.00 sec)
+  ```
+
+- 接続しているユーザー・DB等もろもろを確認（起動中のスレッド情報表示）
+
+  ```
+  mysql> mysql> show processlist;
+  +----+------+-----------+-----------+---------+------+----------+------------------+
+  | Id | User | Host      | db        | Command | Time | State    | Info             |
+  +----+------+-----------+-----------+---------+------+----------+------------------+
+  |  4 | root | localhost | mydb_test | Query   |    0 | starting | show processlist |
+  +----+------+-----------+-----------+---------+------+----------+------------------+
+  1 row in set (0.00 sec)
+  ```
 ---
 
 ## CRUD commands
@@ -152,7 +202,6 @@
   ```
 
 ---
-
 ### Delete
 
 - `row`のデータ削除
@@ -545,3 +594,8 @@
   +----------+
   1 row in set (0.01 sec)
   ```
+
+---
+
+## Join
+
