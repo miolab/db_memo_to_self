@@ -440,6 +440,72 @@
   3 rows in set (0.00 sec)
   ```
 
+- `ORDER BY` (`ASC` / `DESC`)
+
+  ```
+  // 昇順 (デフォルト or ASC)
+  mysql> select * from menu
+      -> order by score;
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  2 | english |  88.1 |     8 |
+  |  3 | physics |  90.5 |     8 |
+  |  1 | math    | 120.2 |    10 |
+  +----+---------+-------+-------+
+  3 rows in set (0.00 sec)
+
+  mysql> select * from menu
+      -> order by score asc;
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  2 | english |  88.1 |     8 |
+  |  3 | physics |  90.5 |     8 |
+  |  1 | math    | 120.2 |    10 |
+  +----+---------+-------+-------+
+  3 rows in set (0.00 sec)
+
+
+  // 降順 (DESC)
+  mysql> select * from menu
+      -> order by score desc;
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  1 | math    | 120.2 |    10 |
+  |  3 | physics |  90.5 |     8 |
+  |  2 | english |  88.1 |     8 |
+  +----+---------+-------+-------+
+  3 rows in set (0.00 sec)
+
+
+  // 先頭から2件抽出
+  mysql> select * from menu
+      -> order by score desc
+      -> limit 2;
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  1 | math    | 120.2 |    10 |
+  |  3 | physics |  90.5 |     8 |
+  +----+---------+-------+-------+
+  2 rows in set (0.00 sec)
+
+
+  // 2件目から2件抽出
+  mysql> select * from menu
+      -> order by score desc
+      -> limit 1,2;
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  3 | physics |  90.5 |     8 |
+  |  2 | english |  88.1 |     8 |
+  +----+---------+-------+-------+
+  2 rows in set (0.00 sec)
+  ```
+
 ---
 
 ## Other commands
