@@ -181,7 +181,7 @@
   - `describe table_name`
 
   - `show columns from table_name`
-  
+
   - `show fields from table_name`
 
 ---
@@ -617,7 +617,7 @@
 
 ## Change column (ALTER TABLE)
 
-- column名のみ変更
+- column名の __変更__
 
   ```
   mysql> alter table menu
@@ -636,7 +636,65 @@
   3 rows in set (0.00 sec)
   ```
 
-  - columnのみ変更であっても型指定は要。
+  - column名だけの変更であっても、型指定は要。
+
+- columnを __追加__
+
+  ```
+  mysql> alter table menu
+      -> add type text after name;
+  Query OK, 0 rows affected (0.12 sec)
+  Records: 0  Duplicates: 0  Warnings: 0
+
+  mysql> select * from menu;
+  +----+---------+------+--------+-------+
+  | id | name    | type | points | stars |
+  +----+---------+------+--------+-------+
+  |  1 | math    | NULL |  120.2 |    10 |
+  |  2 | english | NULL |   88.1 |     8 |
+  |  3 | physics | NULL |   90.5 |     8 |
+  +----+---------+------+--------+-------+
+  3 rows in set (0.00 sec)
+  ```
+
+  - `AFTER ...` は省略可（末尾へ追加される）
+
+    ```
+    mysql> alter table menu
+        -> add priority int;
+    Query OK, 0 rows affected (0.11 sec)
+    Records: 0  Duplicates: 0  Warnings: 0
+
+    mysql> select * from menu;
+    +----+---------+------+--------+-------+----------+
+    | id | name    | type | points | stars | priority |
+    +----+---------+------+--------+-------+----------+
+    |  1 | math    | NULL |  120.2 |    10 |     NULL |
+    |  2 | english | NULL |   88.1 |     8 |     NULL |
+    |  3 | physics | NULL |   90.5 |     8 |     NULL |
+    +----+---------+------+--------+-------+----------+
+    3 rows in set (0.00 sec)
+    ```
+
+- columnを __削除__
+
+  ```
+  mysql> alter table menu
+      -> drop column type,
+      -> drop column priority;
+  Query OK, 0 rows affected (0.12 sec)
+  Records: 0  Duplicates: 0  Warnings: 0
+
+  mysql> select * from menu;
+  +----+---------+--------+-------+
+  | id | name    | points | stars |
+  +----+---------+--------+-------+
+  |  1 | math    |  120.2 |    10 |
+  |  2 | english |   88.1 |     8 |
+  |  3 | physics |   90.5 |     8 |
+  +----+---------+--------+-------+
+  3 rows in set (0.00 sec)
+  ```
 
 ---
 
