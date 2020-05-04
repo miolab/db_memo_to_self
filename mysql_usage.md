@@ -161,6 +161,29 @@
   Query OK, 0 rows affected (0.01 sec)
   ```
 
+- __テーブル構造を確認__
+
+  ```
+  mysql> desc menu;
+  +-------+---------+------+-----+---------+----------------+
+  | Field | Type    | Null | Key | Default | Extra          |
+  +-------+---------+------+-----+---------+----------------+
+  | id    | int(11) | NO   | PRI | NULL    | auto_increment |
+  | name  | text    | YES  |     | NULL    |                |
+  | score | double  | YES  |     | NULL    |                |
+  | stars | int(11) | YES  |     | NULL    |                |
+  +-------+---------+------+-----+---------+----------------+
+  4 rows in set (0.00 sec)
+  ```
+
+  以下コマンドでも同様に可；
+
+  - `describe table_name`
+
+  - `show columns from table_name`
+  
+  - `show fields from table_name`
+
 ---
 
 ### Create
@@ -592,7 +615,7 @@
 
 ---
 
-## Change column name (ALTER TABLE)
+## Change column (ALTER TABLE)
 
 - column名のみ変更
 
