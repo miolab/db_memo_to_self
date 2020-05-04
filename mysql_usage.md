@@ -17,6 +17,13 @@
     $ mysql.server stop -f
     ```
 
+- サーバー起動状態を確認
+
+  ```
+  $ mysql.server status
+   SUCCESS! MySQL running (29727)
+  ```
+
 - ログイン
 
   ```
@@ -114,7 +121,7 @@
 
 ## CRUD commands
 
-- DB 作成
+- `DB 作成`
 
   ```
   mysql> create database mydb_test;
@@ -136,12 +143,16 @@
   Database changed
   ```
 
-- `table`作成 & `Column`作成
+- `table`作成
 
   ```
   mysql> drop table if exists menu;
   Query OK, 0 rows affected, 1 warning (0.01 sec)
+  ```
 
+- `Column`作成
+
+  ```
   mysql> create table menu (
       -> id integer primary key auto_increment,
       -> name text,
@@ -598,4 +609,3 @@
 ---
 
 ## Join
-
