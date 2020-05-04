@@ -66,7 +66,7 @@
   3 rows in set (0.00 sec)
   ```
 
-- DB 一覧
+- __DB 一覧__
 
   ```
   mysql> show databases;
@@ -82,7 +82,7 @@
   5 rows in set (0.01 sec)
   ```
 
-- Table 一覧
+- __Table 一覧__
 
   ```
   mysql> show tables from mydb_test;
@@ -589,6 +589,31 @@
   +----+---------+-------+-------+
   2 rows in set (0.00 sec)
   ```
+
+---
+
+## Change column name (ALTER TABLE)
+
+- column名のみ変更
+
+  ```
+  mysql> alter table menu
+      -> change column score points real;
+  Query OK, 0 rows affected (0.02 sec)
+  Records: 0  Duplicates: 0  Warnings: 0
+
+  mysql> select * from menu;
+  +----+---------+--------+-------+
+  | id | name    | points | stars |
+  +----+---------+--------+-------+
+  |  1 | math    |  120.2 |    10 |
+  |  2 | english |   88.1 |     8 |
+  |  3 | physics |   90.5 |     8 |
+  +----+---------+--------+-------+
+  3 rows in set (0.00 sec)
+  ```
+
+  - columnのみ変更であっても型指定は要。
 
 ---
 
