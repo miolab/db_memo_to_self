@@ -609,3 +609,70 @@
 ---
 
 ## Join
+
+- 内部結合 (inner join)
+
+  - (準備)
+
+  ```
+  mysql> create database double_table_db;
+  Query OK, 1 row affected (0.00 sec)
+
+  mysql> use double_table_db;
+  Database changed
+
+
+  mysql> create table movies (
+      -> id integer primary key auto_increment,
+      -> title text,
+      -> director text,
+      -> year integer);
+  Query OK, 0 rows affected (0.03 sec)
+
+  mysql> create table boxoffice (
+      -> movie_id integer primary key,
+      -> length_minutes real,
+      -> domestic_sales integer,
+      -> international_sales integer);
+  Query OK, 0 rows affected (0.02 sec)
+
+
+  mysql> insert into movies values
+    -> (null, "Eva Jo", "Anno", 2007)
+    -> (null, "Eva Ha", "Anno", 2009),
+    -> (null, "Eva Q", "Anno", 2012),
+    -> (null, "Frozen", "Chris", 2013),
+    -> (null, "Frozen 2", "Chris", 2019);
+
+  mysql> insert into boxoffice values 
+      -> (1, 120.5, 555566666, 777788888),
+      -> (2, 130.5, 333344444, 888899999),
+      -> (3, 90.1, 123456789, 234567898),
+      -> (4, 150.6, 456456456, 789789789),
+      -> (5, 99.6, 456456456, 489789789);
+
+
+  mysql> select * from movies;
+  +----+----------+----------+------+
+  | id | title    | director | year |
+  +----+----------+----------+------+
+  |  1 | Eva Jo   | Anno     | 2007 |
+  |  2 | Eva Ha   | Anno     | 2009 |
+  |  3 | Eva Q    | Anno     | 2012 |
+  |  4 | Frozen   | Chris    | 2013 |
+  |  5 | Frozen 2 | Chris    | 2019 |
+  +----+----------+----------+------+
+  5 rows in set (0.00 sec)
+
+  mysql> select * from boxoffice;
+  +----------+----------------+----------------+---------------------+
+  | movie_id | length_minutes | domestic_sales | international_sales |
+  +----------+----------------+----------------+---------------------+
+  |        1 |          120.5 |      555566666 |           777788888 |
+  |        2 |          130.5 |      333344444 |           888899999 |
+  |        3 |           90.1 |      123456789 |           234567898 |
+  |        4 |          150.6 |      456456456 |           789789789 |
+  |        5 |           99.6 |      456456456 |           489789789 |
+  +----------+----------------+----------------+---------------------+
+  5 rows in set (0.00 sec)
+  ```
