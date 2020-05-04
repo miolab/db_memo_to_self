@@ -220,7 +220,8 @@
 - `row`のデータ更新
 
   ```
-  mysql> update menu set score=120.2 where name="math";
+  mysql> update menu set score = 120.2
+      -> where name = "math";
   Query OK, 1 row affected (0.00 sec)
   Rows matched: 1  Changed: 1  Warnings: 0
 
@@ -233,9 +234,27 @@
   |  3 | physics |  90.5 |     8 |
   +----+---------+-------+-------+
   3 rows in set (0.00 sec)
+
+
+  // 数値加算をする例
+  mysql> update menu set score = score + 10
+      -> where stars = 8;
+  Query OK, 2 rows affected (0.00 sec)
+  Rows matched: 2  Changed: 2  Warnings: 0
+
+  mysql> select * from menu;
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  1 | math    | 120.2 |    10 |
+  |  2 | english |  98.1 |     8 |
+  |  3 | physics | 100.5 |     8 |
+  +----+---------+-------+-------+
+  3 rows in set (0.00 sec)
   ```
 
 ---
+
 ### Delete
 
 - `row`のデータ削除
