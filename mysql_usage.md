@@ -698,9 +698,9 @@
 
 ---
 
-## Other commands
+## Other commands (aggregate / etc.)
 
-- レコード件数をカウント
+- レコードの __件数をカウント__
 
   ```
   mysql> select count(*) from menu;
@@ -710,6 +710,85 @@
   |        3 |
   +----------+
   1 row in set (0.01 sec)
+  ```
+
+- フィールドの __データ種別の件数__ を集計 `(DISTINCT)`
+
+  ```
+  mysql> select distinct stars from menu;
+  +-------+
+  | stars |
+  +-------+
+  |    10 |
+  |     8 |
+  +-------+
+  2 rows in set (0.00 sec)
+  ```
+
+- フィールドの 合計`(SUM)` / 最大値`(MAX)` / 最小値`(MIN)` / 平均値`(AVG)`
+
+  ```
+  mysql> select sum(score) from menu;
+  +------------+
+  | sum(score) |
+  +------------+
+  |      298.8 |
+  +------------+
+  1 row in set (0.01 sec)
+
+
+  mysql> select max(score) from menu;
+  +------------+
+  | max(score) |
+  +------------+
+  |      120.2 |
+  +------------+
+  1 row in set (0.00 sec)
+
+
+  mysql> select min(score) from menu;
+  +------------+
+  | min(score) |
+  +------------+
+  |       88.1 |
+  +------------+
+  1 row in set (0.00 sec)
+
+
+  mysql> select avg(score) from menu;
+  +-------------------+
+  | avg(score)        |
+  +-------------------+
+  | 99.60000000000001 |
+  +-------------------+
+  1 row in set (0.00 sec)
+  ```
+
+- フィールドの __データ種別ごと__ の合計値などを集計 `(GROUP BY / HAVING)`
+
+  ```
+  mysql> select stars, sum(score)
+      -> from menu
+      -> group by stars;
+  +-------+------------+
+  | stars | sum(score) |
+  +-------+------------+
+  |     8 |      178.6 |
+  |    10 |      120.2 |
+  +-------+------------+
+  2 rows in set (0.00 sec)
+
+
+  mysql> select stars, sum(score)
+      -> from menu
+      -> group by stars
+      -> having sum(score) > 150;
+  +-------+------------+
+  | stars | sum(score) |
+  +-------+------------+
+  |     8 |      178.6 |
+  +-------+------------+
+  1 row in set (0.00 sec)
   ```
 
 ---
