@@ -918,7 +918,7 @@
 
 ## Join
 
-- 内部結合 (inner join)
+- 複数テーブルの取り扱い
 
   - (準備)
 
@@ -984,3 +984,37 @@
   +----------+----------------+----------------+---------------------+
   5 rows in set (0.00 sec)
   ```
+
+- 基本
+
+  ```
+  mysql> select m.title, b.domestic_sales
+      -> from movies m, boxoffice b
+      -> where m.id = b.movie_id;
+  +----------+----------------+
+  | title    | domestic_sales |
+  +----------+----------------+
+  | Eva Jo   |      555566666 |
+  | Eva Ha   |      333344444 |
+  | Eva Q    |      123456789 |
+  | Frozen   |      456456456 |
+  | Frozen 2 |      456456456 |
+  +----------+----------------+
+  5 rows in set (0.00 sec)
+
+
+  // AND 等の条件も組み合わせ付与可能
+  mysql> select m.title, b.domestic_sales
+      -> from movies m, boxoffice b
+      -> where m.id = b.movie_id and m.director = "Anno";
+  +--------+----------------+
+  | title  | domestic_sales |
+  +--------+----------------+
+  | Eva Jo |      555566666 |
+  | Eva Ha |      333344444 |
+  | Eva Q  |      123456789 |
+  +--------+----------------+
+  3 rows in set (0.01 sec)
+  ```
+
+- 内部結合 (inner join)
