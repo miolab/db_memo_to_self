@@ -632,6 +632,7 @@
   2 rows in set (0.00 sec)
   ```
 
+- フィールドの文字数カウント `(LENGTH)`
 
   ```
   mysql> select name, length(name)
@@ -644,7 +645,13 @@
   | physics |            7 |
   +---------+--------------+
   3 rows in set (0.00 sec)
+  ```
 
+- フィールドの任意の文字数だけを抽出 `(SUBSTRING)`
+
+  ○文字目から○文字目までを指定して表示
+
+  ```
   mysql> select substring(name, 1, 3) 
       -> from menu;
   +-----------------------+
