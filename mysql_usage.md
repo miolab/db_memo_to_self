@@ -633,28 +633,29 @@
   ```
 
 
-mysql> select name, length(name)
-    -> from menu;
-+---------+--------------+
-| name    | length(name) |
-+---------+--------------+
-| math    |            4 |
-| english |            7 |
-| physics |            7 |
-+---------+--------------+
-3 rows in set (0.00 sec)
+  ```
+  mysql> select name, length(name)
+      -> from menu;
+  +---------+--------------+
+  | name    | length(name) |
+  +---------+--------------+
+  | math    |            4 |
+  | english |            7 |
+  | physics |            7 |
+  +---------+--------------+
+  3 rows in set (0.00 sec)
 
-mysql> select substring(name, 1, 3) 
-    -> from menu;
-+-----------------------+
-| substring(name, 1, 3) |
-+-----------------------+
-| mat                   |
-| eng                   |
-| phy                   |
-+-----------------------+
-3 rows in set (0.00 sec)
-
+  mysql> select substring(name, 1, 3) 
+      -> from menu;
+  +-----------------------+
+  | substring(name, 1, 3) |
+  +-----------------------+
+  | mat                   |
+  | eng                   |
+  | phy                   |
+  +-----------------------+
+  3 rows in set (0.00 sec)
+  ```
 
 ---
 
