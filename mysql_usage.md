@@ -916,7 +916,7 @@
 
 ---
 
-## Join
+## Handling multiple Tables
 
 - 複数テーブルの取り扱い
 
@@ -950,7 +950,8 @@
     -> (null, "Eva Ha", "Anno", 2009),
     -> (null, "Eva Q", "Anno", 2012),
     -> (null, "Frozen", "Chris", 2013),
-    -> (null, "Frozen 2", "Chris", 2019);
+    -> (null, "Frozen 2", "Chris", 2019),
+    -> (null, "Toy story", "Lasseter", 1995);
 
   mysql> insert into boxoffice values 
       -> (1, 120.5, 555566666, 777788888),
@@ -961,16 +962,17 @@
 
 
   mysql> select * from movies;
-  +----+----------+----------+------+
-  | id | title    | director | year |
-  +----+----------+----------+------+
-  |  1 | Eva Jo   | Anno     | 2007 |
-  |  2 | Eva Ha   | Anno     | 2009 |
-  |  3 | Eva Q    | Anno     | 2012 |
-  |  4 | Frozen   | Chris    | 2013 |
-  |  5 | Frozen 2 | Chris    | 2019 |
-  +----+----------+----------+------+
-  5 rows in set (0.00 sec)
+  +----+-----------+----------+------+
+  | id | title     | director | year |
+  +----+-----------+----------+------+
+  |  1 | Eva Jo    | Anno     | 2007 |
+  |  2 | Eva Ha    | Anno     | 2009 |
+  |  3 | Eva Q     | Anno     | 2012 |
+  |  4 | Frozen    | Chris    | 2013 |
+  |  5 | Frozen 2  | Chris    | 2019 |
+  |  6 | Toy story | Lasseter | 1995 |
+  +----+-----------+----------+------+
+  6 rows in set (0.00 sec)
 
   mysql> select * from boxoffice;
   +----------+----------------+----------------+---------------------+
@@ -1017,4 +1019,56 @@
   3 rows in set (0.01 sec)
   ```
 
-- 内部結合 (inner join)
+- __内部結合__ `(INNER JOIN)`
+
+  ベース側テーブルのうち、条件マッチしていないレコードは除外される。
+
+  ```
+  mysql> select * from movies
+      -> inner join boxoffice
+      -> on id = movie_id;
+  +----+----------+----------+------+----------+----------------+----------------+---------------------+
+  | id | title    | director | year | movie_id | length_minutes | domestic_sales | international_sales |
+  +----+----------+----------+------+----------+----------------+----------------+---------------------+
+  |  1 | Eva Jo   | Anno     | 2007 |        1 |          120.5 |      555566666 |           777788888 |
+  |  2 | Eva Ha   | Anno     | 2009 |        2 |          130.5 |      333344444 |           888899999 |
+  |  3 | Eva Q    | Anno     | 2012 |        3 |           90.1 |      123456789 |           234567898 |
+  |  4 | Frozen   | Chris    | 2013 |        4 |          150.6 |      456456456 |           789789789 |
+  |  5 | Frozen 2 | Chris    | 2019 |        5 |           99.6 |      456456456 |           489789789 |
+  +----+----------+----------+------+----------+----------------+----------------+---------------------+
+  5 rows in set (0.00 sec)
+  ```
+
+  - カラム指定や、条件式など組み合わせる例
+
+  ```
+  mysql> select title, year, domestic_sales
+    -> from movies
+    -> inner join boxoffice
+    -> on id = movie_id;
+  +----------+------+----------------+
+  | title    | year | domestic_sales |
+  +----------+------+----------------+
+  | Eva Jo   | 2007 |      555566666 |
+  | Eva Ha   | 2009 |      333344444 |
+  | Eva Q    | 2012 |      123456789 |
+  | Frozen   | 2013 |      456456456 |
+  | Frozen 2 | 2019 |      456456456 |
+  +----------+------+----------------+
+  5 rows in set (0.00 sec)
+
+
+  mysql> select title, year, domestic_sales
+      -> from movies
+      -> inner join boxoffice
+      -> on id = movie_id
+      -> where length_minutes > 120;
+  +--------+------+----------------+
+  | title  | year | domestic_sales |
+  +--------+------+----------------+
+  | Eva Jo | 2007 |      555566666 |
+  | Eva Ha | 2009 |      333344444 |
+  | Frozen | 2013 |      456456456 |
+  +--------+------+----------------+
+  3 rows in set (0.00 sec)
+  ```
