@@ -664,6 +664,31 @@
   3 rows in set (0.00 sec)
   ```
 
+- 重複データを除外して抽出表示 `(SELECT DISTINCT)`
+
+  ```
+  mysql> select stars from menu;
+  +-------+
+  | stars |
+  +-------+
+  |    10 |
+  |     8 |
+  |     8 |
+  +-------+
+  3 rows in set (0.00 sec)
+
+  // DISTINCT で重複値を除外
+  mysql> select distinct stars from menu;
+  +-------+
+  | stars |
+  +-------+
+  |    10 |
+  |     8 |
+  +-------+
+  2 rows in set (0.00 sec)
+
+  ```
+
 ---
 
 ## Change column (ALTER TABLE)
