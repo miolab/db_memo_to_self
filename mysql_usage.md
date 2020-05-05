@@ -747,6 +747,15 @@
   3 rows in set (0.00 sec)
   ```
 
+- column の __型を変更__
+
+  例：`double`型から`float`型へ変更
+
+  ```
+  mysql> alter table menu
+      -> modify score float;
+  ```
+
 ---
 
 ## Aggregate commands
