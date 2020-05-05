@@ -542,7 +542,7 @@
   3 rows in set (0.00 sec)
   ```
 
-- `ORDER BY` (`ASC` / `DESC`)
+- `ORDER BY` (昇順 `ASC` / 降順 `DESC`)
 
   ```
   // 昇順 (デフォルト or ASC)
@@ -632,6 +632,30 @@
   2 rows in set (0.00 sec)
   ```
 
+
+mysql> select name, length(name)
+    -> from menu;
++---------+--------------+
+| name    | length(name) |
++---------+--------------+
+| math    |            4 |
+| english |            7 |
+| physics |            7 |
++---------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select substring(name, 1, 3) 
+    -> from menu;
++-----------------------+
+| substring(name, 1, 3) |
++-----------------------+
+| mat                   |
+| eng                   |
+| phy                   |
++-----------------------+
+3 rows in set (0.00 sec)
+
+
 ---
 
 ## Change column (ALTER TABLE)
@@ -717,7 +741,7 @@
 
 ---
 
-## Other commands (aggregate / etc.)
+## Aggregate commands
 
 - レコードの __件数をカウント__
 
@@ -808,6 +832,78 @@
   |     8 |      178.6 |
   +-------+------------+
   1 row in set (0.00 sec)
+  ```
+
+---
+
+## Random generator / selector
+
+- `RAND()`
+
+  `0.0 ~ 1.0` までの乱数を生成する
+
+  ```
+  mysql> select rand();
+  +---------------------+
+  | rand()              |
+  +---------------------+
+  | 0.47782104320621216 |
+  +---------------------+
+  1 row in set (0.00 sec)
+  ```
+
+- __整数値のランダムデータ__ 生成 （例； `1 ~ 10`）
+
+  ```
+  mysql> select ceil( rand() * 10 );
+  +---------------------+
+  | ceil( rand() * 10 ) |
+  +---------------------+
+  |                   7 |
+  +---------------------+
+  1 row in set (0.00 sec)
+
+  mysql> select ceil( rand() * 10 );
+  +---------------------+
+  | ceil( rand() * 10 ) |
+  +---------------------+
+  |                  10 |
+  +---------------------+
+  1 row in set (0.00 sec)
+  ```
+
+  - `CEIL` : 小数値の切り上げ
+
+- レコードから無作為に抽出する例
+
+  ```
+  // 1件をランダムに抽出 (LIMIT 1)
+  mysql> select * from menu order by rand() limit 1;
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  2 | english |  88.1 |     8 |
+  +----+---------+-------+-------+
+  1 row in set (0.00 sec)
+
+  mysql> select * from menu order by rand() limit 1;
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  3 | physics |  90.5 |     8 |
+  +----+---------+-------+-------+
+  1 row in set (0.00 sec)
+
+
+  // 2件をランダム抽出 (LIMIT 2)
+  mysql> select * from menu order by rand() limit 2;
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  3 | physics |  90.5 |     8 |
+  |  2 | english |  88.1 |     8 |
+  +----+---------+-------+-------+
+  2 rows in set (0.00 sec)
   ```
 
 ---
