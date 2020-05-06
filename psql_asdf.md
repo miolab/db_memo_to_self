@@ -16,21 +16,31 @@
 ```
 $ asdf plugin-add postgres
 
-$ asdf install postgres x.x.x
+$ asdf list all postgres
 
-$ asdf global postgres x.x.x
+$ asdf install postgres x.x
 
-$ psql --version
-# (e.g.)
-# psql (PostgreSQL) 12.2
+$ asdf global postgres x.x
+```
+
+- uninstall
+
+  `$ asdf plugin-remove postgres`
+
+### Confirmation (version check)
 
 ```
+$ psql --version
+psql (PostgreSQL) 12.2
+```
+
+---
 
 ## Usage
 
 ```
+// run server
 $ pg_ctl start
-# run server
 
 $ createdb xxxxxxxx
 # new create database
