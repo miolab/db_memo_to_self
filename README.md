@@ -4,7 +4,7 @@
 
 |                                                                                          | 説明                                   | 補足      |
 | :--------------------------------------------------------------------------------------- | :------------------------------------- | :-------- |
-| [psql_asdf.md](https://github.com/miolab/db_memo_to_self/blob/master/psql_asdf.md)       | **PostgreSQL** を`asdf`でセットアップ  |           |
+| [psql_asdf.md](https://github.com/miolab/db_memo_to_self/blob/master/psql_asdf.md)       | **PostgreSQL** を`asdf`でセットアップ  | 12.2      |
 | [mysql_brew.md](https://github.com/miolab/db_memo_to_self/blob/master/mysql_brew.md)     | **MySQL** を`Homebrew`でセットアップ   | mysql@5.7 |
 | [mysql_usage.md](https://github.com/miolab/db_memo_to_self/blob/master/mysql_usage.md)   | **MySQL** コマンド確認用チートシート   | mysql@5.7 |
 | [mongo_brew.md](https://github.com/miolab/db_memo_to_self/blob/master/mongo_brew.md)     | **MongoDB** を`Homebrew`でセットアップ |           |
