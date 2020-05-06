@@ -664,7 +664,7 @@
   3 rows in set (0.00 sec)
   ```
 
-- 重複データを除外して抽出表示 `(SELECT DISTINCT)`
+- __重複データを除外して抽出__ 表示 `(SELECT DISTINCT)`
 
   ```
   mysql> select stars from menu;
@@ -686,7 +686,6 @@
   |     8 |
   +-------+
   2 rows in set (0.00 sec)
-
   ```
 
 ---
@@ -772,13 +771,20 @@
   3 rows in set (0.00 sec)
   ```
 
-- column の __型を変更__
+- Field の __型を変更__
 
-  例：`double`型から`float`型へ変更
+  例："score"フィールドを、`double`型から`float`型へ変更
 
   ```
   mysql> alter table menu
       -> modify score float;
+  ```
+  
+  例："name"フィールドを、`varchar`型(15)へ変更
+
+  ```
+  mysql> alter table menu
+      -> modify name varchar(15);
   ```
 
 ---
