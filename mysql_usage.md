@@ -860,6 +860,59 @@
 
 ---
 
+## Index
+
+- `INDEX` を __追加__
+
+  ```
+  mysql> alter table menu add index stars_index(stars);
+  Query OK, 0 rows affected (0.03 sec)
+  Records: 0  Duplicates: 0  Warnings: 0
+  ```
+
+- `INDEX` を __確認__
+
+  （`Key_name`）
+
+  ```
+  mysql> show index from menu;
+  +-------+------------+-------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+  | Table | Non_unique | Key_name    | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
+  +-------+------------+-------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+  | menu  |          0 | PRIMARY     |            1 | id          | A         |           3 |     NULL | NULL   |      | BTREE      |         |               |
+  | menu  |          1 | stars_index |            1 | stars       | A         |           2 |     NULL | NULL   | YES  | BTREE      |         |               |
+  +-------+------------+-------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+  2 rows in set (0.00 sec)
+  ```
+
+  - 検証 `(EXPLAIN)`
+
+    ```
+    mysql> explain select * from menu where name = 'score';
+    +----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+
+    | id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra       |
+    +----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+
+    |  1 | SIMPLE      | menu  | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    3 |    33.33 | Using where |
+    +----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+
+    1 row in set, 1 warning (0.00 sec)
+    ```
+
+- `INDEX` を __削除__
+
+  ```
+  mysql> alter table menu drop index stars_index;
+  Query OK, 0 rows affected (0.01 sec)
+  Records: 0  Duplicates: 0  Warnings: 0
+  ```
+
+- INDEX のメリット・デメリット
+
+  - 抽出が早くなる
+
+  - レコード新規作成や更新が遅くなる（つどつどIndex を貼るため）
+
+---
+
 ## Aggregate commands
 
 - レコードの __件数をカウント__
