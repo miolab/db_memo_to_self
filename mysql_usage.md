@@ -761,9 +761,9 @@
 
 ---
 
-## Change column (ALTER TABLE)
+## Change fields (ALTER TABLE)
 
-- column名の __変更__
+- フィールド名の __変更__
 
   ```
   mysql> alter table menu
@@ -784,7 +784,7 @@
 
   - column名だけの変更であっても、型指定は要。
 
-- columnを __追加__
+- フィールドを __追加__
 
   ```
   mysql> alter table menu
@@ -822,7 +822,7 @@
     3 rows in set (0.00 sec)
     ```
 
-- columnを __削除__
+- フィールドを __削除__
 
   ```
   mysql> alter table menu
@@ -842,7 +842,7 @@
   3 rows in set (0.00 sec)
   ```
 
-- Field の __型を変更__
+- フィールドの __型を変更__
 
   例："score"フィールドを、`double`型から`float`型へ変更
 
@@ -850,7 +850,7 @@
   mysql> alter table menu
       -> modify score float;
   ```
-  
+
   例："name"フィールドを、`varchar`型(15)へ変更
 
   ```
