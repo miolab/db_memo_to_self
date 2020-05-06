@@ -182,11 +182,94 @@ psql (PostgreSQL) 12.2
   ALTER TABLE
   ```
 
+---
+
+## Record CRUD
+
+  （準備）
+
+  ```
+  psql_blogapp=# \d posts
+                                        Table "public.posts"
+    Column  |            Type             | Collation | Nullable |              Default              
+  ----------+-----------------------------+-----------+----------+-----------------------------------
+  id       | integer                     |           | not null | nextval('posts_id_seq'::regclass)
+  title    | character varying(255)      |           | not null | 
+  body     | text                        |           |          | 
+  is_draft | boolean                     |           |          | true
+  posted   | timestamp without time zone |           |          | statement_timestamp()
+  Indexes:
+      "posts_pkey" PRIMARY KEY, btree (id)
+  Check constraints:
+      "posts_body_check" CHECK (length(body) > 2)
+  ```
+
+- レコード作成
+
+  ```
+  psql_blogapp=# insert into posts (title, body)
+  psql_blogapp-# values ('title_1', 'hogehoge mogemoge.');
+  INSERT 0 1
+
+
+  psql_blogapp=# insert into posts (title, body)
+  psql_blogapp-# values ('title_2', '2nd hogehoge mogemoge.');
+  INSERT 0 1
+
+
+  psql_blogapp=# select * from posts;
+   id |  title  |          body          | is_draft |           posted           
+  ----+---------+------------------------+----------+----------------------------
+    1 | title_1 | hogehoge mogemoge.     | t        | 2020-05-06 18:12:36.348108
+    2 | title_2 | 2nd hogehoge mogemoge. | t        | 2020-05-06 18:14:18.460786
+  (2 rows)
+  ```
+
+
 
 
 ---
 
-## Outer file command execution
+## Other commands
+
+- 拡張表示 `(\x)`
+
+  ```
+  psql_blogapp=# \x
+  Expanded display is on.
+  ```
+
+  大量のレコードを持つテーブルの表示等で有用。
+
+  - 抽出表示例
+
+    ```
+    psql_blogapp=# select * from posts;
+    -[ RECORD 1 ]------------------------
+    id       | 1
+    title    | title_1
+    body     | hogehoge mogemoge.
+    is_draft | t
+    posted   | 2020-05-06 18:12:36.348108
+    -[ RECORD 2 ]------------------------
+    id       | 2
+    title    | title_2
+    body     | 2nd hogehoge mogemoge.
+    is_draft | t
+    posted   | 2020-05-06 18:14:18.460786
+    ```
+
+  - 拡張表示オフにするときは、もう一度 `\x`
+
+    ```
+    psql_blogapp=# \x
+    Expanded display is off.
+    ```
+
+
+---
+
+## Outer file's command execution
 
 - `\i xxxx.sql`
 
