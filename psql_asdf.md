@@ -107,11 +107,13 @@ psql (PostgreSQL) 12.2
   psql_blogapp=#
   ```
 
-  - __DB 切断__ `(\q)`
+  - __DB 切断__ `(\q)` or `(exit)`
 
     ```
     psql_blogapp=# \q
     ```
+
+    - `# exit` でも可
 
   - DB 一覧表示 `(\l)`
 
@@ -144,6 +146,13 @@ psql (PostgreSQL) 12.2
   CREATE TABLE
   ```
 
+    - __Table 削除__
+
+      ```
+      psql_blogapp=# drop table myposts;
+      DROP TABLE
+      ```
+
 - __Table 一覧__ `(\dt)`
 
   ```
@@ -164,4 +173,11 @@ psql (PostgreSQL) 12.2
   --------+------------------------+-----------+----------+---------
   title  | character varying(255) |           |          | 
   body   | text                   |           |          | 
+  ```
+
+- __Table 名を変更__
+
+  ```
+  psql_blogapp=# alter table posts rename to myposts;
+  ALTER TABLE
   ```
