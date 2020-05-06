@@ -705,6 +705,36 @@
   3 rows in set (0.00 sec)
   ```
 
+- 複数フィールド名を __連結__ して表示 `(CONCAT)`
+
+  ```
+  mysql> select concat(name, '(', stars, ')') from menu;
+  +-------------------------------+
+  | concat(name, '(', stars, ')') |
+  +-------------------------------+
+  | math(10)                      |
+  | english(8)                    |
+  | physics(8)                    |
+  +-------------------------------+
+  3 rows in set (0.00 sec)
+  ```
+
+  - ラベル名を任意の名前にしたい場合は、`AS`を使用
+
+    ```
+    mysql> select concat(name, '(', stars, ')')
+        -> as name_and_stars
+        -> from menu;
+    +----------------+
+    | name_and_stars |
+    +----------------+
+    | math(10)       |
+    | english(8)     |
+    | physics(8)     |
+    +----------------+
+    3 rows in set (0.00 sec)
+    ```
+
 - __重複データを除外して抽出__ 表示 `(SELECT DISTINCT)`
 
   ```
