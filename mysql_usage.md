@@ -582,7 +582,20 @@
   3 rows in set (0.00 sec)
 
 
-  // 先頭から2件抽出
+  // 昇順と降順を組み合わせ（例：starsグループを昇順にしつつ、scoreは降順にして抽出）
+  mysql> select * from menu
+      -> order by stars, score desc;
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  3 | physics |  90.5 |     8 |
+  |  2 | english |  88.1 |     8 |
+  |  1 | math    | 120.2 |    10 |
+  +----+---------+-------+-------+
+  3 rows in set (0.00 sec)
+
+
+  // 先頭から2件抽出（limit）
   mysql> select * from menu
       -> order by score desc
       -> limit 2;
@@ -599,6 +612,19 @@
   mysql> select * from menu
       -> order by score desc
       -> limit 1,2;
+  +----+---------+-------+-------+
+  | id | name    | score | stars |
+  +----+---------+-------+-------+
+  |  3 | physics |  90.5 |     8 |
+  |  2 | english |  88.1 |     8 |
+  +----+---------+-------+-------+
+  2 rows in set (0.00 sec)
+
+
+  // 上記例で、OFFSET を使う例
+  mysql> select * from menu
+    -> order by score desc
+    -> limit 2 offset 1;
   +----+---------+-------+-------+
   | id | name    | score | stars |
   +----+---------+-------+-------+
