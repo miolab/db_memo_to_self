@@ -130,3 +130,38 @@ psql (PostgreSQL) 12.2
                           |          |          |             |             | im=CTc/im
     (6 rows)
     ```
+
+---
+
+## Table
+
+- __Table 作成__
+
+  ```
+  psql_blogapp=# create table posts (
+  psql_blogapp(# title varchar(255),
+  psql_blogapp(# body text);
+  CREATE TABLE
+  ```
+
+- __Table 一覧__ `(\dt)`
+
+  ```
+  psql_blogapp=# \dt
+        List of relations
+  Schema | Name  | Type  | Owner 
+  --------+-------+-------+-------
+  public | posts | table | im
+  (1 row)
+  ```
+
+- __Table 情報（columnの型など）__ 確認 `(\d)`
+
+  ```
+  psql_blogapp-# \d posts
+                        Table "public.posts"
+  Column |          Type          | Collation | Nullable | Default 
+  --------+------------------------+-----------+----------+---------
+  title  | character varying(255) |           |          | 
+  body   | text                   |           |          | 
+  ```
