@@ -181,3 +181,26 @@ psql (PostgreSQL) 12.2
   psql_blogapp=# alter table posts rename to myposts;
   ALTER TABLE
   ```
+
+
+
+---
+
+## Outer file command execution
+
+- `\i xxxx.sql`
+
+  ( `\i dir_hoge/xxxx.sql` )
+
+```
+psql_blogapp=# \i psql_cmd/create_tb.sql;
+CREATE TABLE
+
+
+psql_blogapp=# \dt
+       List of relations
+ Schema | Name  | Type  | Owner 
+--------+-------+-------+-------
+ public | posts | table | im
+(1 row)
+```
