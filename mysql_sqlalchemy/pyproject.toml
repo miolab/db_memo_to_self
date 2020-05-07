@@ -7,6 +7,7 @@ authors = ["im <poson_hemp@yahoo.co.jp>"]
 [tool.poetry.dependencies]
 python = "^3.7"
 sqlalchemy = "^1.3.16"
+mysqlclient = "^1.4.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

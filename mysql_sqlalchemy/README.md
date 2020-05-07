@@ -22,9 +22,15 @@ $ poetry new mysql_sqlalchemy
 
 $ cd mysql_sqlalchemy
 
+// add Driver
+$ poetry add mysqlclient
+
+// add ORM
 $ poetry add sqlalchemy
 
 $ code app.py
+.
+.
 ```
 
 ## Execute
