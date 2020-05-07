@@ -1,4 +1,4 @@
-# Usage
+# MySQL Usage
 
 ## Server start & login
 
@@ -143,14 +143,14 @@
   Database changed
   ```
 
-- `table`作成
+- __テーブル削除__ （兼、テーブル作成前の事前準備） `DROP TABLE`
 
   ```
   mysql> drop table if exists menu;
   Query OK, 0 rows affected, 1 warning (0.01 sec)
   ```
 
-- `Column`作成
+- __テーブル作成__ (`Field` 作成)
 
   ```
   mysql> create table menu (
