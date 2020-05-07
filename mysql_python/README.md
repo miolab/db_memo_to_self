@@ -1,4 +1,4 @@
-# Usage MySQL with Python (Local)
+# Usage MySQL with Python/MySQLClient (Local)
 
 - Env & Version
 
@@ -13,6 +13,25 @@
   Poetry version 1.0.5
   ```
 
-- Library
+## Setup
 
-  - MySQLClient
+```
+$ poetry new mysql_python
+
+$ cd mysql_python
+
+$ poetry add mysqlclient
+
+$ code app.py
+```
+
+## Execute
+
+```
+$ poetry shell
+
+(in poetry venv)
+$ python app.py
+
+$ exit
+```
