@@ -67,22 +67,25 @@ def mysql_exec():
             print(r)
 
 
-    # sql_create_record("security", 80.8, 5)
+    try:
+        # sql_create_record("security", 80.8, 5)
 
-    # sql_update_record(150.9)
+        # sql_update_record(150.9)
 
-    sql_delete_record("security")
+        sql_delete_record("security")
 
+        # Save data
+        conn.commit()
 
-    # Read table
-    sql_read_record()
-
-    # Save data
-    conn.commit()
-
-    # Disconnect db
-    cursor.close
-    conn.close
+        # Read table
+        sql_read_record()
+    except Exception as e:
+        conn.rollback()
+        raise e
+    finally:
+        # Disconnect db
+        cursor.close()
+        conn.close()
 
 
 if __name__ == "__main__":
