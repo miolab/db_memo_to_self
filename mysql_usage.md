@@ -1364,3 +1364,29 @@
     +----+---------+-------+-------+
     3 rows in set (0.00 sec)
     ```
+
+---
+
+## External SQL file execution
+
+- `source xxxx.sql`
+
+  ( `source dir_hoge/xxxx.sql` )
+
+  ```
+  mysql> source mysql_cmd/create_tb.sql;
+  Query OK, 0 rows affected (0.03 sec)
+
+
+  mysql> desc posts;
+  +----------+---------------------+------+-----+---------+----------------+
+  | Field    | Type                | Null | Key | Default | Extra          |
+  +----------+---------------------+------+-----+---------+----------------+
+  | id       | bigint(20) unsigned | NO   | PRI | NULL    | auto_increment |
+  | title    | varchar(255)        | NO   |     | NULL    |                |
+  | body     | text                | YES  |     | NULL    |                |
+  | author   | varchar(255)        | YES  |     | im      |                |
+  | is_draft | tinyint(1)          | YES  |     | 1       |                |
+  +----------+---------------------+------+-----+---------+----------------+
+  5 rows in set (0.01 sec)
+  ```
