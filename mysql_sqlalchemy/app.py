@@ -77,21 +77,37 @@ def update_record(target_name, update_score):
     session.commit()
 
 
-update_record("database", 111.1)
+# update_record("database", 131.1)
+
+
+def delete_record():
+    """
+    Delete record.
+    """
+    # -- DELETE FROM menu WHERE name = "hoge";
+    # subject = session.query(Subject).filter(Subject.name == "security").delete()
+
+    # -- DELETE FROM menu WHERE score > 131;
+    subject = session.query(Subject).filter(Subject.score > 131).delete()
+
+    session.commit()
+
+
+delete_record()
 
 
 def read_table():
     """
     Read table.
     """
-    # -- SELECT * FROM table;
+    # -- SELECT * FROM menu;
     subjects = session.query(Subject).all()
     # subject = subjects[0]    # NOT USE
 
-    # -- SELECT name, score FROM table;
+    # -- SELECT name, score FROM menu;
     # subjects = session.query(Subject.name, Subject.score).all()
 
-    # -- SELECT name FROM table WHERE name = foo;
+    # -- SELECT name FROM menu WHERE name = "math";
     # subjects = session.query(Subject).filter(Subject.name == "math").all()
 
     # -- SELECT * FROM menu ORDER BY score DESC LIMIT 3;
