@@ -19,7 +19,7 @@ def connect_db(db):
         host = 'localhost',
         database = db
     )
-    engine = create_engine(url)
+    engine = create_engine(url, encoding="utf-8")
 
 
 connect_db('mydb_test')
@@ -44,7 +44,7 @@ def define_model(tb):
         score = Column(Float)
         stars = Column(Integer)
 
-    session = sessionmaker(bind=engine)()
+    session = sessionmaker(autocommit=False, bind=engine)()
 
 
 define_model('menu')
