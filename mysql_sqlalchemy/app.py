@@ -125,7 +125,9 @@ def read_table():
 
 
 # SQL execute directly
-sql = "select * from menu order by stars desc limit 1"
+sql = """ select * from menu
+    order by stars desc limit 1
+    """
 subjects = session.execute(sql)
 for subject in subjects:
     print(
