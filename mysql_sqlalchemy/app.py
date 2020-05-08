@@ -81,11 +81,14 @@ sql = """ select * from menu
     """
 subjects = session.execute(sql)
 for subject in subjects:
+    print(subject)
+    """ note: カラム毎に返すには、
     print(
       subject.name,
       subject.score,
       subject.stars
     )
+    """
 
 
 # Disconnect DB
