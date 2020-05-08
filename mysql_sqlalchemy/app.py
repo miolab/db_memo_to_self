@@ -67,12 +67,25 @@ def create_record(new_name, new_score, new_stars):
 # create_record("security", 88.8, 8)
 
 
+def update_record(target_name, update_score):
+    """
+    Update record.
+        e.g) update score
+    """
+    subject = session.query(Subject).filter(Subject.name == target_name).first()
+    subject.score = update_score
+    session.commit()
+
+
+update_record("database", 111.1)
+
+
 def read_table():
     """
     Read table.
     """
     # -- SELECT * FROM table;
-    # subjects = session.query(Subject).all()
+    subjects = session.query(Subject).all()
     # subject = subjects[0]    # NOT USE
 
     # -- SELECT name, score FROM table;
@@ -82,7 +95,7 @@ def read_table():
     # subjects = session.query(Subject).filter(Subject.name == "math").all()
 
     # -- SELECT * FROM menu ORDER BY score DESC LIMIT 3;
-    subjects = session.query(Subject).order_by(desc(Subject.score)).limit(3).all()
+    # subjects = session.query(Subject).order_by(desc(Subject.score)).limit(3).all()
 
     for subject in subjects:
         print(
