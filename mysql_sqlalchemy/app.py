@@ -30,7 +30,7 @@ def define_model(tb):
     Define model, and generate Session.
 
     DB Columns
-        | id | name | score | stars|
+        | id | name | score | stars |
     """
     global Subject, session
 
@@ -50,12 +50,41 @@ def define_model(tb):
 define_model('menu')
 
 
-subjects = session.query(Subject).all()
+def create_record(new_name, new_score, new_stars):
+    """
+    Create new record.
+    """
+    new_subject = Subject(
+        name = new_name,
+        score = new_score,
+        stars = new_stars
+    )
+    session.add(new_subject)
+    session.commit()
 
-subject = subjects[0]
 
-print(
-  subject.name,
-  subject.score,
-  subject.stars
-  )
+# create_record("database", 77.7, 7)
+create_record("security", 88.8, 8)
+
+
+def read_table():
+    """
+    Read table.
+    """
+    subjects = session.query(Subject).all()
+
+    subject = subjects[0]
+
+    for subject in subjects:
+        print(
+          subject.name,
+          subject.score,
+          subject.stars
+        )
+
+
+read_table()
+
+
+# Disconnect DB
+session.close()
