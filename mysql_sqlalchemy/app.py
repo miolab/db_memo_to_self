@@ -93,7 +93,7 @@ def delete_record():
     session.commit()
 
 
-delete_record()
+# delete_record()
 
 
 def read_table():
@@ -121,7 +121,18 @@ def read_table():
         )
 
 
-read_table()
+# read_table()
+
+
+# SQL execute directly
+sql = "select * from menu order by stars desc limit 1"
+subjects = session.execute(sql)
+for subject in subjects:
+    print(
+      subject.name,
+      subject.score,
+      subject.stars
+    )
 
 
 # Disconnect DB
