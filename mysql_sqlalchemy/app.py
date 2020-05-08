@@ -1,5 +1,5 @@
 import sqlalchemy
-from sqlalchemy import create_engine, Column, Integer, Float, String
+from sqlalchemy import create_engine, Column, Integer, Float, String, desc
 from sqlalchemy.engine.url import URL
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -64,16 +64,25 @@ def create_record(new_name, new_score, new_stars):
 
 
 # create_record("database", 77.7, 7)
-create_record("security", 88.8, 8)
+# create_record("security", 88.8, 8)
 
 
 def read_table():
     """
     Read table.
     """
-    subjects = session.query(Subject).all()
+    # -- SELECT * FROM table;
+    # subjects = session.query(Subject).all()
+    # subject = subjects[0]    # NOT USE
 
-    subject = subjects[0]
+    # -- SELECT name, score FROM table;
+    # subjects = session.query(Subject.name, Subject.score).all()
+
+    # -- SELECT name FROM table WHERE name = foo;
+    # subjects = session.query(Subject).filter(Subject.name == "math").all()
+
+    # -- SELECT * FROM menu ORDER BY score DESC LIMIT 3;
+    subjects = session.query(Subject).order_by(desc(Subject.score)).limit(3).all()
 
     for subject in subjects:
         print(
