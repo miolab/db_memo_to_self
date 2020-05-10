@@ -66,9 +66,9 @@ def read_table():
 
     for subject in subjects:
         print(
-          subject.name,
-          subject.score,
-          subject.stars
+            subject.name,
+            subject.score,
+            subject.stars
         )
 
 
@@ -84,9 +84,9 @@ for subject in subjects:
     print(subject)
     """ note: カラム毎に返すには、
     print(
-      subject.name,
-      subject.score,
-      subject.stars
+        subject.name,
+        subject.score,
+        subject.stars
     )
     """
 
