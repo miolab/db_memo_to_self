@@ -1,10 +1,22 @@
 # Usage MySQL with Python/SQLAlchemhy (Local)
 
-- Env & Version
+__Python__ の ORMライブラリ `SQLAlchemy` による __MySQL__ 基本操作を実装します。
+
+- 参考
+
+  - [SQLAlchemy](https://www.sqlalchemy.org/) （公式）
+
+- 前提
+
+  - データベースおよびテーブルは、MySQL側で直接作成済み。
+
+## 実行環境・バージョン
+
+- Mac OS (10.14.6)
 
   ```
   $ mysql --version
-  mysql  Ver 14.14 Distrib 5.7.29, for osx10.14 (x86_64) 
+  mysql  Ver 14.14 Distrib 5.7.29, for osx10.14 (x86_64)
 
   $ python --version
   Python 3.7.7
@@ -13,9 +25,7 @@
   Poetry version 1.0.5
   ```
 
-  - [SQLAlchemy](https://www.sqlalchemy.org/)
-
-## Initial setup
+## 実行準備
 
 ```
 $ poetry new mysql_sqlalchemy
@@ -33,15 +43,21 @@ $ code app.py
 .
 ```
 
-## Execute
+## 実行
 
 ```
 $ poetry shell
 
-$ python app.py
+(in poetry venv)$ python app.py
 ```
 
-## Sample prepared DB
+- メインファイル `app.py` で基本的なCRUD操作を確認。
+
+- `$ exit` で実行環境を終了。
+
+---
+
+### サンプル データヘース
 
 ```
 mysql> show processlist;
