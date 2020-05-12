@@ -13,8 +13,6 @@
 
     <?php
 
-    // Connect DB
-
     use FFI\Exception;
 
     $db = "mydb_test";
@@ -24,6 +22,7 @@
     $dsn = "mysql:dbname={$db};host=127.0.0.1;charset={$charset}";
 
     try {
+      // Connect DB
       $dbh = new PDO($dsn, $user, $password);
 
       // Handling DB
