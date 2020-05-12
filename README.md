@@ -21,5 +21,6 @@
 | :-- | :-- | :-- |
 | [mysql_python](https://github.com/miolab/db_memo_to_self/tree/master/mysql_python) | __Python__ + MySQL | MySQLClient / Poetry |
 | [mysql_sqlalchemy](https://github.com/miolab/db_memo_to_self/tree/master/mysql_sqlalchemy) | __Python__ + MySQL | SQLAlchemy / Poetry |
+| [mysql_php](https://github.com/miolab/db_memo_to_self/tree/master/mysql_php) | __PHP__ + MySQL | |
 | [mysql_node](https://github.com/miolab/db_memo_to_self/tree/master/mysql_node) | __Node.js__ + MySQL | |
 | [mysql_elixir](https://github.com/miolab/db_memo_to_self/tree/master/mysql_elixir) | __Elixir__ + MySQL | MyXQL _(on going)_ |
