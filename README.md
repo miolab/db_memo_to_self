@@ -24,3 +24,7 @@
 | [mysql_php](https://github.com/miolab/db_memo_to_self/tree/master/mysql_php) | __PHP__ + MySQL | |
 | [mysql_node](https://github.com/miolab/db_memo_to_self/tree/master/mysql_node) | __Node.js__ + MySQL | |
 | [mysql_elixir](https://github.com/miolab/db_memo_to_self/tree/master/mysql_elixir) | __Elixir__ + MySQL | MyXQL _(on going)_ |
+
+- note :
+
+  `Elixir + PostgreSQL` の `Ecto` による連携を、別リポジトリ __[ecto_postgres](https://github.com/miolab/ecto_postgres)__ で実装。
