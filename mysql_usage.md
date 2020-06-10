@@ -30,11 +30,15 @@
   mysql -uroot
   ```
 
-  - ログアウト
+  - `mysql -u root -p`
 
-    ```
-    mysql> exit
-    ```
+    `root`ユーザーでログイン（パスワード要）
+
+- ログアウト
+
+  ```
+  mysql> exit
+  ```
 
 ---
 
